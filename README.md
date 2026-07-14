@@ -1,4 +1,4 @@
-# Ruman Jamadder Rabby — Academic Portfolio
+# Ruman Jamadder Rabby — Academic Portfolio Share
 
 A premium, Apple/Vercel/Linear-inspired portfolio for a Master's student in
 the Department of Information Science and Library Management, University of
