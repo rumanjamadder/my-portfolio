@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-line-light dark:border-line-dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink dark:bg-night dark:text-bone font-body antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    @apply bg-brass/30 text-ink dark:text-bone;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid #A9812E;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: theme('backgroundImage.grain');
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] tracking-[0.22em] uppercase text-brass dark:text-brass-light;
+  }
+
+  .rule {
+    @apply border-t border-line-light dark:border-line-dark;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-paper/70 dark:bg-night/60;
+  }
+
+  /* Catalog card — the signature motif: index-card styling with a
+     punch hole and a call-number tab, used across Projects,
+     Experience, and Education. */
+  .catalog-card {
+    position: relative;
+    @apply bg-white dark:bg-night-surface rounded-[6px] border border-line-light dark:border-line-dark;
+    box-shadow: 0 1px 2px rgba(28,26,23,0.05), 0 10px 26px -16px rgba(28,26,23,0.28);
+  }
+  html.dark .catalog-card {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 14px 30px -16px rgba(0,0,0,0.6);
+  }
+
+  .catalog-hole {
+    @apply absolute left-4 top-4 w-2.5 h-2.5 rounded-full bg-paper dark:bg-night border border-line-light dark:border-line-dark;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  .catalog-code {
+    @apply font-mono text-[10px] tracking-widest uppercase text-ink-faint dark:text-bone-soft;
+  }
+
+  .card-stitch {
+    background-image: repeating-linear-gradient(
+      to right,
+      theme('colors.line.light') 0,
+      theme('colors.line.light') 5px,
+      transparent 5px,
+      transparent 10px
+    );
+    height: 1px;
+  }
+  html.dark .card-stitch {
+    background-image: repeating-linear-gradient(
+      to right,
+      theme('colors.line.dark') 0,
+      theme('colors.line.dark') 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: theme('colors.line.light');
+  border-radius: 8px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: theme('colors.line.dark');
+}
